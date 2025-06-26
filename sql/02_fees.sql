@@ -50,37 +50,5 @@ SELECT
         ELSE NULL 
     END AS fees_growth_pct
 FROM fees_with_metrics
-ORDER BY day DESC;
+ORDER BY day DESC
 
--- Alternative approach using swap events and fee tiers
-/*
-WITH swap_fees AS (
-    SELECT 
-        DATE_TRUNC('day', s.evt_block_time) AS day,
-        SUM(
-            ABS(s.amount0) * p.fee / 1000000 / 1e18 * pr0.price +
-            ABS(s.amount1) * p.fee / 1000000 / 1e18 * pr1.price
-        ) AS estimated_fees_usd
-    FROM uniswap_v3_arbitrum.Swap_evt_Swap s
-    INNER JOIN uniswap_v3_arbitrum.Factory_evt_PoolCreated p 
-        ON s.contract_address = p.pool
-    LEFT JOIN prices.usd pr0 ON DATE_TRUNC('day', s.evt_block_time) = pr0.day 
-        AND p.token0 = pr0.contract_address 
-        AND pr0.blockchain = 'arbitrum'
-    LEFT JOIN prices.usd pr1 ON DATE_TRUNC('day', s.evt_block_time) = pr1.day 
-        AND p.token1 = pr1.contract_address 
-        AND pr1.blockchain = 'arbitrum'
-    WHERE s.evt_block_time >= NOW() - INTERVAL '90 days'
-    GROUP BY 1
-)
-
-SELECT 
-    day,
-    estimated_fees_usd,
-    AVG(estimated_fees_usd) OVER (
-        ORDER BY day 
-        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-    ) AS fees_7d_ma
-FROM swap_fees
-ORDER BY day DESC;
-*/ 

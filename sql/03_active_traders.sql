@@ -85,31 +85,5 @@ SELECT
 
 FROM daily_traders dt
 LEFT JOIN real_payers rp ON dt.day = rp.day
-ORDER BY dt.day DESC;
+ORDER BY dt.day DESC
 
--- Additional query for hourly granularity (for more detailed analysis)
-/*
-WITH hourly_activity AS (
-    SELECT 
-        DATE_TRUNC('hour', block_time) AS hour,
-        COUNT(DISTINCT tx_from) AS unique_traders,
-        COUNT(*) AS trades,
-        SUM(amount_usd) AS volume_usd
-    FROM dex.trades
-    WHERE blockchain = 'arbitrum'
-        AND project = 'uniswap'
-        AND version = '3'
-        AND block_time >= NOW() - INTERVAL '7 days'
-    GROUP BY 1
-)
-
-SELECT 
-    hour,
-    unique_traders,
-    trades,
-    volume_usd,
-    EXTRACT(hour FROM hour) AS hour_of_day,
-    EXTRACT(dow FROM hour) AS day_of_week  -- 0=Sunday, 6=Saturday
-FROM hourly_activity
-ORDER BY hour DESC;
-*/ 

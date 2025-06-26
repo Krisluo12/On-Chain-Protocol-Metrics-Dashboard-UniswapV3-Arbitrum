@@ -109,5 +109,3 @@ Feel free to open issues or submit pull requests for improvements!
 MIT License - see LICENSE file for details
 
 ---
-
-**Built in <24 hours** as a demonstration of rapid on-chain analytics development with advanced ML capabilities.

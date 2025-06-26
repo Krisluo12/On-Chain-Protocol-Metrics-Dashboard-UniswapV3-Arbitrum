@@ -1,14 +1,13 @@
 metric,value
-Analysis Period (Days),39
-Total Volume (USD),"$12,650,312,210"
-Average Daily Volume (USD),"$324,366,980"
-Total Estimated Fees (USD),"$32,850,280"
-Average Daily Fees (USD),"$1,095,009"
-Fee/Volume Ratio (%),0.26%
-Total Active Traders,"456,761"
-Average Daily Traders,"14,734"
-Total Real Payers,"262,282"
-Overall Real Payer Ratio (%),57.4%
-Average Trade Size (USD),"$1,336"
-Total Number of Trades,"9,211,814"
-Protocol Health Score (/95),79/95
+Analysis Period (Days),63
+Total Volume (USD),"$294,077,389"
+Average Daily Volume (USD),"$4,594,959"
+Total Estimated Fees (USD),"$882,232"
+Average Daily Fees (USD),"$13,785"
+Fee/Volume Ratio (%),0.30%
+Total Active Traders,"763,076"
+Average Daily Traders,"11,923"
+Total Real Payers,"382,162"
+Overall Real Payer Ratio (%),50.4%
+Average Trade Size (USD),$312
+Total Number of Trades,"962,764"
